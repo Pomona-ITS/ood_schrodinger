@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Clean the environment
+module purge
+
+# Set working directory to home directory
+cd "${HOME}"
+
+#xfce
+source "<%= session.staged_root.join("desktops", "#{context.desktop}.sh") %>" 
+#
+# Start program
+#
+
+module load schrodinger/<%= context.pom_schrodinger_versions %>
+
+<%- if context.pom_num_gpus.to_i >= 1 -%>
+module list
+set -x
+vglrun maestro
+<%- else -%>
+module list
+set -x
+maestro
+<%- end -%>
