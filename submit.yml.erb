@@ -5,6 +5,9 @@ script:
   queue_name: "<%= pom_partitions %>"
   native:
     - "--nodes=1"
+    <%- unless pom_num_gpus.blank? or pom_num_gpus.to_i == 0 -%>
+    - "--gres=gpu:<%= pom_num_gpus %>"
+    <%- end -%>
     - "--time"
     - "0-<%= pom_num_hours %>"
     - "--cpus-per-task=<%= pom_num_cores %>"
