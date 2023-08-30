@@ -17,7 +17,7 @@ module load schrodinger/<%= context.pom_schrodinger_versions %>
 <%- if context.pom_num_gpus.to_i >= 1 -%>
 module list
 set -x
-vglrun maestro
+maestro
 <%- else -%>
 module list
 set -x
